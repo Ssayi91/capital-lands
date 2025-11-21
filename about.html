@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Capital Homelands — Property Experts in Nairobi</title>
+  <meta name="description" content="Learn about Capital Homelands — your trusted partner for premium property listings in Westlands, Karen, Parklands and across Nairobi.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#10B981',
+            dark: '#0f172a'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .mobile-nav { display: none; }
+    @media (max-width: 768px) {
+      .mobile-nav { display: block; position: fixed; top: 0; left: 0; width: 100%; background: white; padding: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 50; }
+      .desktop-nav { display: none; }
+    }
+
+    /* Parallax Hero */
+    .parallax-hero {
+      background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 60vh;
+      position: relative;
+    }
+    .hero-overlay {
+      background: rgba(0, 0, 0, 0.6);
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+    }
+
+    /* Floating WhatsApp */
+    .floating-wa {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 40;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #25D366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body class="bg-gray-50 font-sans">
+
+<!-- Mobile Nav -->
+<div id="mobileNav" class="mobile-nav hidden">
+  <div class="flex justify-between items-center">
+    <div class="text-xl font-bold text-dark">Capital<span class="text-primary">Homelands</span></div>
+    <button id="closeMenu" class="text-dark"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="mt-4 space-y-3 pt-2">
+    <a href="index.html" class="block py-2 text-dark hover:text-primary">Home</a>
+    <a href="properties.html" class="block py-2 text-dark hover:text-primary">Properties</a>
+    <a href="about.html" class="block py-2 text-dark hover:text-primary">About</a>
+    <a href="contact.html" class="block py-2 text-dark hover:text-primary">Contact</a>
+    <a href="https://wa.me/254712345678" target="_blank" class="block py-2 bg-primary text-white text-center rounded mt-2">
+      <i class="fab fa-whatsapp mr-1"></i> WhatsApp
+    </a>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="bg-white shadow">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+    <a href="index.html" class="text-xl font-bold text-dark">Capital<span class="text-primary">Homelands</span></a>
+    <div class="desktop-nav hidden md:flex space-x-6">
+      <a href="index.html" class="font-medium text-dark hover:text-primary">Home</a>
+      <a href="properties.html" class="font-medium text-dark hover:text-primary">Properties</a>
+      <a href="about.html" class="font-medium text-dark hover:text-primary">About</a>
+      <a href="contact.html" class="font-medium text-dark hover:text-primary">Contact</a>
+    </div>
+    <a href="https://wa.me/254712345678" target="_blank" class="hidden md:block bg-primary text-white px-4 py-2 rounded-md flex items-center">
+      <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+    </a>
+    <button id="openMenu" class="md:hidden text-dark"><i class="fas fa-bars text-xl"></i></button>
+  </div>
+</header>
+
+<!-- Parallax Hero Section -->
+<section class="parallax-hero">
+  <div class="hero-overlay px-4">
+    <div class="max-w-3xl">
+      <h1 class="text-3xl md:text-5xl font-bold mb-4">About Capital Homelands</h1>
+      <p class="text-xl">Your trusted partner for premium property listings in Nairobi since 2025.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Main Content -->
+<section class="max-w-7xl mx-auto px-4 py-12">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center mb-16">
+    <div>
+      <h2 class="text-2xl font-bold text-dark mb-4">Our Mission</h2>
+      <p class="text-gray-700 mb-4">
+        Capital Homelands was founded to simplify property search in Nairobi by connecting buyers, renters, and investors 
+        directly with verified owners — eliminating agents, hidden fees, and misinformation.
+      </p>
+      <p class="text-gray-700">
+        Based in Ruai, we specialize in premium listings across Westlands, Karen, Parklands, Lavington, and beyond — 
+        offering transparency, speed, and personalized service.
+      </p>
+    </div>
+    <div class="bg-gray-200 rounded-xl h-80 flex items-center justify-center">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+           alt="Nairobi Property" class="h-full w-full object-cover rounded-xl">
+    </div>
+  </div>
+
+  <!-- Why Choose Us -->
+  <div class="text-center mb-12">
+    <h2 class="text-2xl font-bold text-dark mb-6">Why Choose Capital Homelands?</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-white p-6 rounded-xl shadow">
+        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+          <i class="fas fa-check text-primary text-xl"></i>
+        </div>
+        <h3 class="font-bold text-lg mb-2">Verified Listings</h3>
+        <p class="text-gray-600">Every property is confirmed directly with the owner — no duplicates or expired ads.</p>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow">
+        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+          <i class="fas fa-comments text-primary text-xl"></i>
+        </div>
+        <h3 class="font-bold text-lg mb-2">Direct WhatsApp</h3>
+        <p class="text-gray-600">Chat instantly with owners — no middlemen, no delays.</p>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow">
+        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+          <i class="fas fa-map-marked-alt text-primary text-xl"></i>
+        </div>
+        <h3 class="font-bold text-lg mb-2">Local Expertise</h3>
+        <p class="text-gray-600">We know Nairobi’s neighborhoods — from Westlands to Athi River and beyond.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Service Areas -->
+  <div class="bg-white rounded-xl shadow p-6 mb-12">
+    <h2 class="text-2xl font-bold text-dark mb-4 text-center">We Serve Prime Nairobi Areas</h2>
+    <div class="flex flex-wrap justify-center gap-3">
+      <span class="bg-gray-100 px-4 py-2 rounded-lg">Westlands</span>
+      <span class="bg-gray-100 px-4 py-2 rounded-lg">Karen</span>
+      <span class="bg-gray-100 px-4 py-2 rounded-lg">Parklands</span>
+      <span class="bg-gray-100 px-4 py-2 rounded-lg">Lavington</span>
+      <span class="bg-gray-100 px-4 py-2 rounded-lg">Kilimani</span>
+      <span class="bg-gray-100 px-4 py-2 rounded-lg">Runda</span>
+      <span class="bg-gray-100 px-4 py-2 rounded-lg">Industrial Area</span>
+      <span class="bg-gray-100 px-4 py-2 rounded-lg">Athi River</span>
+      <span class="bg-gray-100 px-4 py-2 rounded-lg">Muthaiga</span>
+      <span class="bg-gray-100 px-4 py-2 rounded-lg">Upper Hill</span>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="text-center">
+    <h3 class="text-xl font-bold mb-4">Ready to Find Your Property?</h3>
+    <a href="https://wa.me/254712345678" target="_blank"
+       class="inline-block bg-primary hover:bg-emerald-600 text-white font-bold px-6 py-3.5 rounded-lg">
+      <i class="fab fa-whatsapp mr-2"></i> WhatsApp Us Now
+    </a>
+  </div>
+</section>
+
+<!-- Floating WhatsApp (Mobile) -->
+<a href="https://wa.me/254712345678" target="_blank" class="floating-wa md:hidden">
+  <i class="fab fa-whatsapp text-white text-2xl"></i>
+</a>
+
+<!-- Footer -->
+<footer class="bg-dark text-white pt-12 pb-8">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div>
+        <h3 class="text-xl font-bold mb-4">Capital Homelands</h3>
+        <p class="text-gray-300 text-sm leading-relaxed">
+          Premium property listings for sale and rent across Nairobi. 
+          Verified. Direct from owners. No hidden fees.
+        </p>
+        <div class="mt-4 flex space-x-4">
+          <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/254712345678" target="_blank" class="text-gray-300 hover:text-white"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-semibold text-lg mb-4">Contact Us</h4>
+        <ul class="space-y-3 text-gray-300 text-sm">
+          <li class="flex items-start">
+            <i class="fas fa-map-marker-alt mt-1 mr-3 text-primary"></i>
+            <span>Ruai, Nairobi, Kenya</span>
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-phone mr-3 text-primary"></i>
+            <span>+254 712 345 678</span>
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-envelope mr-3 text-primary"></i>
+            <span>info@capitalhomelands.co.ke</span>
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-clock mr-3 text-primary"></i>
+            <span>Mon–Sat: 8AM–6PM</span>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-lg mb-4">Quick Links</h4>
+        <ul class="space-y-2">
+          <li><a href="#" class="text-gray-300 hover:text-primary text-sm">Home</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-primary text-sm">All Properties</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-primary text-sm">Apartments for Rent</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-primary text-sm">Land for Sale</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-primary text-sm">Commercial</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-lg mb-4">We Serve</h4>
+        <p class="text-gray-300 text-sm mb-3">Prime neighborhoods across Nairobi:</p>
+        <ul class="grid grid-cols-2 gap-1 text-gray-300 text-sm">
+          <li>• Westlands</li>
+          <li>• Karen</li>
+          <li>• Parklands</li>
+          <li>• Lavington</li>
+          <li>• Kilimani</li>
+          <li>• Runda</li>
+          <li>• Industrial Area</li>
+          <li>• Athi River</li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-gray-800 mt-10 pt-6 text-center text-gray-400 text-sm">
+      <p>&copy; 2025 Capital Homelands. All rights reserved.</p>
+      <p class="mt-1"><i class="fas fa-globe-africa mr-1"></i> .co.ke Domain • Trusted Since 2025</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Mobile menu
+document.getElementById('openMenu').addEventListener('click', () => {
+  document.getElementById('mobileNav').classList.remove('hidden');
+});
+document.getElementById('closeMenu').addEventListener('click', () => {
+  document.getElementById('mobileNav').classList.add('hidden');
+});
+</script>
+
+</body>
+</html>
