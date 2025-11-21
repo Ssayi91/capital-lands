@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin — Capital Homelands</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#10B981',
+            dark: '#0f172a'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .admin-nav { background: #0f172a; }
+    .admin-nav a { @apply text-gray-300 hover:text-white px-4 py-2; }
+    .admin-nav a.active { @apply text-white bg-primary/20; }
+    .property-row img { height: 80px; object-fit: cover; }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans">
+
+<!-- Password Gate -->
+<div id="passwordGate" class="min-h-screen flex items-center justify-center bg-gray-50">
+  <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
+    <h2 class="text-2xl font-bold text-center mb-6 text-dark">Admin Access</h2>
+    <p class="text-gray-600 text-center mb-6">Enter your admin password to proceed.</p>
+    <input type="password" id="adminPassword" placeholder="Password" class="w-full p-3 border rounded-lg mb-4">
+    <button onclick="unlockAdmin()" class="w-full bg-primary hover:bg-emerald-600 text-white py-3 rounded-lg font-medium">
+      Unlock Admin Panel
+    </button>
+    <p class="text-xs text-gray-500 mt-4 text-center">This page is not publicly linked.</p>
+  </div>
+</div>
+
+<!-- Admin Layout (Hidden until unlocked) -->
+<div id="adminPanel" class="hidden">
+  <!-- Admin Navbar -->
+  <nav class="admin-nav text-white">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="text-xl font-bold">Capital<span class="text-primary">Homelands</span> <span class="text-sm">Admin</span></div>
+      <button onclick="logout()" class="text-gray-300 hover:text-white flex items-center">
+        <i class="fas fa-sign-out-alt mr-2"></i> Logout
+      </button>
+    </div>
+  </nav>
+
+  <!-- Tabs -->
+  <div class="max-w-7xl mx-auto px-4 py-4">
+    <div class="flex space-x-2 border-b">
+      <button class="tab-btn py-2 px-4 font-medium text-gray-600 border-b-2 border-transparent" data-tab="upload">
+        Add Listing
+      </button>
+      <button class="tab-btn py-2 px-4 font-medium text-gray-600 border-b-2 border-transparent" data-tab="manage">
+        Manage Listings
+      </button>
+    </div>
+  </div>
+
+  <!-- Tab Content -->
+  <div class="max-w-7xl mx-auto px-4 py-6">
+    <!-- Upload Form -->
+    <div id="tab-upload" class="tab-content">
+      <div class="bg-white p-6 rounded-xl shadow">
+        <h3 class="text-xl font-bold mb-4">Add New Property</h3>
+        <form id="uploadForm" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label class="block mb-2 font-medium">Title</label>
+            <input type="text" name="title" class="w-full p-3 border rounded-lg" required>
+          </div>
+          <div>
+            <label class="block mb-2 font-medium">Category</label>
+            <select name="category" class="w-full p-3 border rounded-lg" required>
+              <option value="">Select...</option>
+              <option>Apartment</option>
+              <option>House</option>
+              <option>Office</option>
+              <option>Godown</option>
+              <option>Land</option>
+              <option>Commercial</option>
+            </select>
+          </div>
+          <div>
+            <label class="block mb-2 font-medium">Type</label>
+            <select name="type" class="w-full p-3 border rounded-lg" required>
+              <option value="Rent">For Rent</option>
+              <option value="Sale">For Sale</option>
+            </select>
+          </div>
+          <div>
+            <label class="block mb-2 font-medium">Price (KSh)</label>
+            <input type="number" name="price" class="w-full p-3 border rounded-lg" required>
+          </div>
+          <div class="md:col-span-2">
+            <label class="block mb-2 font-medium">Location (e.g. Westlands, Karen)</label>
+            <input type="text" name="location" class="w-full p-3 border rounded-lg" required>
+          </div>
+          <div class="md:col-span-2">
+            <label class="block mb-2 font-medium">Description</label>
+            <textarea name="description" class="w-full p-3 border rounded-lg" rows="3"></textarea>
+          </div>
+          <div class="md:col-span-2">
+            <label class="block mb-2 font-medium">Image URL (Unsplash or Cloudinary)</label>
+            <input type="url" name="image" class="w-full p-3 border rounded-lg" placeholder="https://example.com/image.jpg">
+            <p class="text-xs text-gray-500 mt-1">Use free images from Unsplash or your Cloudinary link</p>
+          </div>
+          <div class="md:col-span-2">
+            <button type="submit" class="bg-primary hover:bg-emerald-600 text-white px-6 py-3 rounded-lg font-medium">
+              Add Listing
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Manage Listings -->
+    <div id="tab-manage" class="tab-content hidden">
+      <!-- Filters -->
+      <div class="bg-white p-5 rounded-xl shadow mb-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+          <input type="text" id="filter-title" placeholder="Search title..." class="p-2.5 border rounded text-sm">
+          <select id="filter-category" class="p-2.5 border rounded text-sm">
+            <option value="">All Categories</option>
+            <option>Apartment</option>
+            <option>House</option>
+            <option>Office</option>
+            <option>Godown</option>
+            <option>Land</option>
+            <option>Commercial</option>
+          </select>
+          <select id="filter-type" class="p-2.5 border rounded text-sm">
+            <option value="">All Types</option>
+            <option>Rent</option>
+            <option>Sale</option>
+          </select>
+          <select id="filter-status" class="p-2.5 border rounded text-sm">
+            <option value="">All Status</option>
+            <option>Active</option>
+            <option>Archived</option>
+          </select>
+        </div>
+        <div class="mt-3 text-right">
+          <button onclick="applyAdminFilters()" class="bg-gray-200 hover:bg-gray-300 px-4 py-1.5 rounded text-sm">
+            Apply
+          </button>
+          <button onclick="resetAdminFilters()" class="ml-2 text-sm text-gray-600">Reset</button>
+        </div>
+      </div>
+
+      <!-- Listings Table -->
+      <div class="bg-white rounded-xl shadow overflow-x-auto">
+        <table class="w-full">
+          <thead class="bg-gray-50 text-left">
+            <tr>
+              <th class="p-4">Image</th>
+              <th class="p-4">Title</th>
+              <th class="p-4">Category</th>
+              <th class="p-4">Price</th>
+              <th class="p-4">Location</th>
+              <th class="p-4">Status</th>
+              <th class="p-4">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="admin-listings-body">
+            <!-- Injected by JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// --- MOCK ADMIN LISTINGS (from your site) ---
+let adminListings = [
+  { id: 1, title: "APARTMENT FOR RENT- GENERAL MATHENGE ROAD, WESTLANDS", price: 150000, category: "Apartment", type: "Rent", location: "Westlands", image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2", archived: false },
+  { id: 2, title: "APARTMENT FOR SALE , GENERAL MATHENGE – WESTLANDS", price: 35000000, category: "Apartment", type: "Sale", location: "Westlands", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c", archived: false },
+  { id: 3, title: "HOUSE TO LET —KAREN -WINDY RIDGE", price: 500000, category: "House", type: "Rent", location: "Karen", image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750", archived: true },
+  { id: 4, title: "LAND FOR SALE – ELDAMA RAVIN WESTLANDS", price: 500000000, category: "Land", type: "Sale", location: "Westlands", image: "https://images.unsplash.com/photo-1470466803385-966269158d9c", archived: false }
+];
+
+const ADMIN_PASSWORD = "capitalhomes"; // Change this in real app
+
+// Unlock admin
+function unlockAdmin() {
+  const pwd = document.getElementById('adminPassword').value;
+  if (pwd === ADMIN_PASSWORD) {
+    document.getElementById('passwordGate').classList.add('hidden');
+    document.getElementById('adminPanel').classList.remove('hidden');
+    renderAdminListings();
+  } else {
+    alert('Incorrect password.');
+  }
+}
+
+function logout() {
+  document.getElementById('adminPanel').classList.add('hidden');
+  document.getElementById('passwordGate').classList.remove('hidden');
+  document.getElementById('adminPassword').value = '';
+}
+
+// Tab Navigation
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('text-primary', 'border-primary'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+    
+    btn.classList.add('text-primary', 'border-primary');
+    document.getElementById('tab-' + btn.dataset.tab).classList.remove('hidden');
+  });
+});
+
+// Upload Form
+document.getElementById('uploadForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const formData = new FormData(this);
+  const newListing = {
+    id: Date.now(),
+    title: formData.get('title'),
+    price: parseFloat(formData.get('price')),
+    category: formData.get('category'),
+    type: formData.get('type'),
+    location: formData.get('location'),
+    image: formData.get('image') || "https://placehold.co/600x400/10B981/white?text=" + encodeURIComponent(formData.get('category')),
+    archived: false
+  };
+  adminListings.unshift(newListing);
+  renderAdminListings();
+  this.reset();
+  alert('Listing added successfully!');
+});
+
+// Render Admin Listings
+function renderAdminListings(items = adminListings) {
+  const tbody = document.getElementById('admin-listings-body');
+  tbody.innerHTML = items.map(item => {
+    const statusClass = item.archived ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800';
+    const statusText = item.archived ? 'Archived' : 'Active';
+    
+    return `
+      <tr class="border-b hover:bg-gray-50">
+        <td class="p-4"><img src="${item.image}?w=100" alt="" class="property-row w-20 rounded"></td>
+        <td class="p-4 font-medium max-w-xs truncate">${item.title}</td>
+        <td class="p-4">${item.category}</td>
+        <td class="p-4">KSh ${item.price.toLocaleString()}</td>
+        <td class="p-4">${item.location}</td>
+        <td class="p-4"><span class="px-2 py-1 rounded text-xs ${statusClass}">${statusText}</span></td>
+        <td class="p-4">
+          <button onclick="archiveListing(${item.id})" class="text-sm text-red-600 hover:underline">
+            ${item.archived ? 'Unarchive' : 'Archive'}
+          </button>
+        </td>
+      </tr>
+    `;
+  }).join('');
+}
+
+// Archive/Unarchive
+function archiveListing(id) {
+  const listing = adminListings.find(l => l.id == id);
+  if (listing) {
+    listing.archived = !listing.archived;
+    renderAdminListings();
+    alert(listing.archived ? 'Listing archived' : 'Listing restored');
+  }
+}
+
+// Admin Filters
+function applyAdminFilters() {
+  const title = document.getElementById('filter-title').value.toLowerCase();
+  const category = document.getElementById('filter-category').value;
+  const type = document.getElementById('filter-type').value;
+  const status = document.getElementById('filter-status').value;
+
+  const filtered = adminListings.filter(l => {
+    if (title && !l.title.toLowerCase().includes(title)) return false;
+    if (category && l.category !== category) return false;
+    if (type && l.type !== type) return false;
+    if (status === 'Active' && l.archived) return false;
+    if (status === 'Archived' && !l.archived) return false;
+    return true;
+  });
+
+  renderAdminListings(filtered);
+}
+
+function resetAdminFilters() {
+  document.getElementById('filter-title').value = '';
+  document.getElementById('filter-category').value = '';
+  document.getElementById('filter-type').value = '';
+  document.getElementById('filter-status').value = '';
+  renderAdminListings();
+}
+
+// Initial tab
+document.querySelector('.tab-btn').click();
+</script>
+
+</body>
+</html>
