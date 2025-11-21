@@ -20,9 +20,13 @@
   </script>
   <style>
     .admin-nav { background: #0f172a; }
-    .admin-nav a { @apply text-gray-300 hover:text-white px-4 py-2; }
-    .admin-nav a.active { @apply text-white bg-primary/20; }
     .property-row img { height: 80px; object-fit: cover; }
+    .conditional-section { display: none; }
+    .conditional-section.active { display: block; }
+    .feature-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 0.5rem; }
+    @media (max-width: 768px) {
+      .feature-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body class="bg-gray-100 font-sans">
@@ -30,35 +34,35 @@
 <!-- Password Gate -->
 <div id="passwordGate" class="min-h-screen flex items-center justify-center bg-gray-50">
   <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
-    <h2 class="text-2xl font-bold text-center mb-6 text-dark">Admin Access</h2>
-    <p class="text-gray-600 text-center mb-6">Enter your admin password to proceed.</p>
+    <h2 class="text-2xl font-bold text-center mb-2 text-dark">Admin Access</h2>
+    <p class="text-gray-600 text-center mb-6">Enter your admin password to manage listings.</p>
     <input type="password" id="adminPassword" placeholder="Password" class="w-full p-3 border rounded-lg mb-4">
     <button onclick="unlockAdmin()" class="w-full bg-primary hover:bg-emerald-600 text-white py-3 rounded-lg font-medium">
       Unlock Admin Panel
     </button>
-    <p class="text-xs text-gray-500 mt-4 text-center">This page is not publicly linked.</p>
+    <p class="text-xs text-gray-500 mt-4 text-center">This page is not linked publicly.</p>
   </div>
 </div>
 
-<!-- Admin Layout (Hidden until unlocked) -->
+<!-- Admin Layout -->
 <div id="adminPanel" class="hidden">
   <!-- Admin Navbar -->
   <nav class="admin-nav text-white">
     <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-      <div class="text-xl font-bold">Capital<span class="text-primary">Homelands</span> <span class="text-sm">Admin</span></div>
-      <button onclick="logout()" class="text-gray-300 hover:text-white flex items-center">
-        <i class="fas fa-sign-out-alt mr-2"></i> Logout
+      <div class="text-xl font-bold">Capital<span class="text-primary">Homelands</span> <span class="text-sm font-normal">Admin</span></div>
+      <button onclick="logout()" class="text-gray-300 hover:text-white flex items-center text-sm">
+        <i class="fas fa-sign-out-alt mr-1"></i> Logout
       </button>
     </div>
   </nav>
 
   <!-- Tabs -->
   <div class="max-w-7xl mx-auto px-4 py-4">
-    <div class="flex space-x-2 border-b">
-      <button class="tab-btn py-2 px-4 font-medium text-gray-600 border-b-2 border-transparent" data-tab="upload">
+    <div class="flex space-x-1 border-b">
+      <button class="tab-btn py-2.5 px-5 font-medium text-gray-600 border-b-2 border-transparent hover:text-primary" data-tab="upload">
         Add Listing
       </button>
-      <button class="tab-btn py-2 px-4 font-medium text-gray-600 border-b-2 border-transparent" data-tab="manage">
+      <button class="tab-btn py-2.5 px-5 font-medium text-gray-600 border-b-2 border-transparent hover:text-primary" data-tab="manage">
         Manage Listings
       </button>
     </div>
@@ -69,51 +73,184 @@
     <!-- Upload Form -->
     <div id="tab-upload" class="tab-content">
       <div class="bg-white p-6 rounded-xl shadow">
-        <h3 class="text-xl font-bold mb-4">Add New Property</h3>
-        <form id="uploadForm" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label class="block mb-2 font-medium">Title</label>
-            <input type="text" name="title" class="w-full p-3 border rounded-lg" required>
+        <h3 class="text-xl font-bold mb-6">Add New Property Listing</h3>
+        <form id="uploadForm" class="space-y-6">
+          <!-- Core Info -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block mb-2 font-medium text-sm">Title</label>
+              <input type="text" name="title" class="w-full p-3 border rounded-lg" required placeholder="e.g. 4-Bedroom House in Karen">
+            </div>
+            <div>
+              <label class="block mb-2 font-medium text-sm">Price (KSh)</label>
+              <input type="number" name="price" class="w-full p-3 border rounded-lg" required>
+            </div>
+            <div>
+              <label class="block mb-2 font-medium text-sm">Location</label>
+              <input type="text" name="location" class="w-full p-3 border rounded-lg" required placeholder="e.g. Westlands, Karen">
+            </div>
+            <div>
+              <label class="block mb-2 font-medium text-sm">Category</label>
+              <select id="categorySelect" name="category" class="w-full p-3 border rounded-lg" required>
+                <option value="">Select Category</option>
+                <option value="House">House</option>
+                <option value="Apartment">Apartment</option>
+                <option value="Office">Office</option>
+                <option value="Godown">Godown</option>
+                <option value="Land">Land</option>
+                <option value="Commercial">Commercial</option>
+              </select>
+            </div>
+            <div class="md:col-span-2">
+              <label class="block mb-2 font-medium text-sm">Property Type</label>
+              <select name="type" class="w-full p-3 border rounded-lg" required>
+                <option value="Rent">For Rent</option>
+                <option value="Sale">For Sale</option>
+              </select>
+            </div>
           </div>
-          <div>
-            <label class="block mb-2 font-medium">Category</label>
-            <select name="category" class="w-full p-3 border rounded-lg" required>
-              <option value="">Select...</option>
-              <option>Apartment</option>
-              <option>House</option>
-              <option>Office</option>
-              <option>Godown</option>
-              <option>Land</option>
-              <option>Commercial</option>
-            </select>
+
+          <!-- Images -->
+          <div class="border-t pt-6">
+            <label class="block mb-2 font-medium text-sm">Upload Photos (from your device)</label>
+            <input type="file" name="images" multiple accept="image/*" class="w-full p-2 border rounded">
+            <p class="text-xs text-gray-500 mt-1">Select up to 6 images (JPG/PNG)</p>
+            <div id="imagePreview" class="grid grid-cols-3 gap-2 mt-3"></div>
           </div>
-          <div>
-            <label class="block mb-2 font-medium">Type</label>
-            <select name="type" class="w-full p-3 border rounded-lg" required>
-              <option value="Rent">For Rent</option>
-              <option value="Sale">For Sale</option>
-            </select>
+
+          <!-- CONDITIONAL SECTIONS -->
+          <!-- HOUSE / APARTMENT -->
+          <div id="residentialSection" class="conditional-section border-t pt-6">
+            <h4 class="font-bold mb-4 text-lg">Interior Details</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label class="block mb-2 text-sm">Bedrooms</label>
+                <input type="number" name="bedrooms" min="1" class="w-full p-3 border rounded-lg">
+              </div>
+              <div>
+                <label class="block mb-2 text-sm">Bathrooms (Total)</label>
+                <input type="number" name="bathrooms" min="1" class="w-full p-3 border rounded-lg">
+              </div>
+              <div>
+                <label class="block mb-2 text-sm">Ensuite Bedrooms</label>
+                <input type="number" name="ensuiteCount" min="0" class="w-full p-3 border rounded-lg">
+              </div>
+              <div>
+                <label class="block mb-2 text-sm">Parking Spaces</label>
+                <input type="number" name="parkingSpaces" min="0" class="w-full p-3 border rounded-lg">
+              </div>
+            </div>
+
+            <!-- Kitchens & Utility -->
+            <div class="mt-6">
+              <h5 class="font-medium mb-3">Kitchens & Utility Areas</h5>
+              <div class="feature-grid">
+                <label class="flex items-center"><input type="checkbox" name="features" value="Main Kitchen"> Main Kitchen</label>
+                <label class="flex items-center"><input type="checkbox" name="features" value="Pantry/Utility Kitchen"> Pantry / Utility Kitchen</label>
+                <label class="flex items-center"><input type="checkbox" name="features" value="Laundry Area"> Laundry / Dhobi Area</label>
+                <label class="flex items-center"><input type="checkbox" name="features" value="Separate DSQ Entrance"> DSQ with Separate Entrance</label>
+              </div>
+            </div>
+
+            <!-- Special Rooms -->
+            <div class="mt-6">
+              <h5 class="font-medium mb-3">Special Rooms</h5>
+              <div class="feature-grid">
+                <label class="flex items-center"><input type="checkbox" name="features" value="Study Room"> Study Room</label>
+                <label class="flex items-center"><input type="checkbox" name="features" value="Prayer Room"> Prayer Room</label>
+                <label class="flex items-center"><input type="checkbox" name="features" value="Gym Space"> Gym Space</label>
+                <label class="flex items-center"><input type="checkbox" name="features" value="Office Space"> Office Space</label>
+                <label class="flex items-center"><input type="checkbox" name="features" value="Fireplace"> Fireplace</label>
+                <label class="flex items-center"><input type="checkbox" name="features" value="Sunken Lounge"> Sunken Lounge</label>
+                <label class="flex items-center"><input type="checkbox" name="features" value="Family TV Room"> Family TV Room</label>
+                <label class="flex items-center"><input type="checkbox" name="features" value="Guest Cloak Room"> Guest Cloak Room</label>
+              </div>
+            </div>
+
+            <!-- Outdoor -->
+            <div class="mt-6">
+              <h5 class="font-medium mb-3">Outdoor Features</h5>
+              <div class="feature-grid">
+                <label class="flex items-center"><input type="checkbox" name="features" value="Balcony"> Balcony</label>
+                <label class="flex items-center"><input type="checkbox" name="features" value="Swimming Pool"> Swimming Pool</label>
+                <label class="flex items-center"><input type="checkbox" name="features" value="Garden"> Garden</label>
+                <label class="flex items-center"><input type="checkbox" name="features" value="Pavilion"> Pavilion</label>
+                <label class="flex items-center"><input type="checkbox" name="features" value="Half-Acre Plot"> Half-Acre Plot</label>
+                <label class="flex items-center"><input type="checkbox" name="features" value="One Acre Plot"> One Acre Plot</label>
+              </div>
+            </div>
+
+            <!-- Utilities -->
+            <div class="mt-6">
+              <h5 class="font-medium mb-3">Utilities</h5>
+              <div class="feature-grid">
+                <label class="flex items-center"><input type="checkbox" name="features" value="Backup Generator"> Backup Generator</label>
+                <label class="flex items-center"><input type="checkbox" name="features" value="3-Phase Power"> 3-Phase Electricity</label>
+                <label class="flex items-center"><input type="checkbox" name="features" value="Water Tank"> Water Tank</label>
+                <label class="flex items-center"><input type="checkbox" name="features" value="Solar Panels"> Solar Panels</label>
+                <label class="flex items-center"><input type="checkbox" name="features" value="Lift"> Lift</label>
+                <label class="flex items-center"><input type="checkbox" name="features" value="Gated Community"> Gated Community</label>
+              </div>
+            </div>
           </div>
-          <div>
-            <label class="block mb-2 font-medium">Price (KSh)</label>
-            <input type="number" name="price" class="w-full p-3 border rounded-lg" required>
+
+          <!-- LAND -->
+          <div id="landSection" class="conditional-section border-t pt-6">
+            <h4 class="font-bold mb-4 text-lg">Land Details</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label class="block mb-2 text-sm">Acreage / Size</label>
+                <input type="text" name="acreage" class="w-full p-3 border rounded-lg" placeholder="e.g. 0.8 acres or 100' x 287'">
+              </div>
+              <div>
+                <label class="block mb-2 text-sm">Land Use</label>
+                <select name="landUse" class="w-full p-3 border rounded-lg">
+                  <option>Commercial</option>
+                  <option>Residential</option>
+                  <option>Mixed</option>
+                </select>
+              </div>
+            </div>
+            <div class="mt-4 flex items-center">
+              <input type="checkbox" id="hasStructures" name="hasStructures">
+              <label for="hasStructures" class="ml-2">Has Existing Structures (to demolish)</label>
+            </div>
           </div>
-          <div class="md:col-span-2">
-            <label class="block mb-2 font-medium">Location (e.g. Westlands, Karen)</label>
-            <input type="text" name="location" class="w-full p-3 border rounded-lg" required>
+
+          <!-- COMMERCIAL / OFFICE / GODOWN -->
+          <div id="commercialSection" class="conditional-section border-t pt-6">
+            <h4 class="font-bold mb-4 text-lg">Commercial Details</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label class="block mb-2 text-sm">Area (sqft)</label>
+                <input type="number" name="areaSqft" class="w-full p-3 border rounded-lg">
+              </div>
+              <div>
+                <label class="block mb-2 text-sm">Floors</label>
+                <input type="text" name="floors" class="w-full p-3 border rounded-lg" placeholder="e.g. Ground + 2nd">
+              </div>
+            </div>
+            <div class="mt-4">
+              <label class="block mb-2 text-sm">Facilities</label>
+              <div class="feature-grid">
+                <label class="flex items-center"><input type="checkbox" name="features" value="Reception"> Reception</label>
+                <label class="flex items-center"><input type="checkbox" name="features" value="Kitchen"> Kitchen</label>
+                <label class="flex items-center"><input type="checkbox" name="features" value="Lavatories"> Lavatories</label>
+                <label class="flex items-center"><input type="checkbox" name="features" value="Cargo Lift"> Cargo Lift</label>
+                <label class="flex items-center"><input type="checkbox" name="features" value="Ample Parking"> Ample Parking</label>
+                <label class="flex items-center"><input type="checkbox" name="features" value="Office Space"> Office Space</label>
+              </div>
+            </div>
+            <div class="mt-4">
+              <label class="block mb-2 text-sm">Additional Details</label>
+              <textarea name="commercialDetails" class="w-full p-3 border rounded-lg" rows="2"></textarea>
+            </div>
           </div>
-          <div class="md:col-span-2">
-            <label class="block mb-2 font-medium">Description</label>
-            <textarea name="description" class="w-full p-3 border rounded-lg" rows="3"></textarea>
-          </div>
-          <div class="md:col-span-2">
-            <label class="block mb-2 font-medium">Image URL (Unsplash or Cloudinary)</label>
-            <input type="url" name="image" class="w-full p-3 border rounded-lg" placeholder="https://example.com/image.jpg">
-            <p class="text-xs text-gray-500 mt-1">Use free images from Unsplash or your Cloudinary link</p>
-          </div>
-          <div class="md:col-span-2">
-            <button type="submit" class="bg-primary hover:bg-emerald-600 text-white px-6 py-3 rounded-lg font-medium">
-              Add Listing
+
+          <!-- Submit -->
+          <div class="pt-6 border-t">
+            <button type="submit" class="bg-primary hover:bg-emerald-600 text-white px-6 py-3.5 rounded-lg font-medium">
+              Add Listing to Capital Homelands
             </button>
           </div>
         </form>
@@ -122,14 +259,13 @@
 
     <!-- Manage Listings -->
     <div id="tab-manage" class="tab-content hidden">
-      <!-- Filters -->
       <div class="bg-white p-5 rounded-xl shadow mb-6">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
           <input type="text" id="filter-title" placeholder="Search title..." class="p-2.5 border rounded text-sm">
           <select id="filter-category" class="p-2.5 border rounded text-sm">
             <option value="">All Categories</option>
-            <option>Apartment</option>
             <option>House</option>
+            <option>Apartment</option>
             <option>Office</option>
             <option>Godown</option>
             <option>Land</option>
@@ -147,21 +283,18 @@
           </select>
         </div>
         <div class="mt-3 text-right">
-          <button onclick="applyAdminFilters()" class="bg-gray-200 hover:bg-gray-300 px-4 py-1.5 rounded text-sm">
-            Apply
-          </button>
+          <button onclick="applyAdminFilters()" class="bg-gray-200 hover:bg-gray-300 px-4 py-1.5 rounded text-sm">Apply</button>
           <button onclick="resetAdminFilters()" class="ml-2 text-sm text-gray-600">Reset</button>
         </div>
       </div>
 
-      <!-- Listings Table -->
       <div class="bg-white rounded-xl shadow overflow-x-auto">
         <table class="w-full">
           <thead class="bg-gray-50 text-left">
             <tr>
               <th class="p-4">Image</th>
               <th class="p-4">Title</th>
-              <th class="p-4">Category</th>
+              <th class="p-4">Details</th>
               <th class="p-4">Price</th>
               <th class="p-4">Location</th>
               <th class="p-4">Status</th>
@@ -178,17 +311,53 @@
 </div>
 
 <script>
-// --- MOCK ADMIN LISTINGS (from your site) ---
+// Mock data from real listings
 let adminListings = [
-  { id: 1, title: "APARTMENT FOR RENT- GENERAL MATHENGE ROAD, WESTLANDS", price: 150000, category: "Apartment", type: "Rent", location: "Westlands", image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2", archived: false },
-  { id: 2, title: "APARTMENT FOR SALE , GENERAL MATHENGE – WESTLANDS", price: 35000000, category: "Apartment", type: "Sale", location: "Westlands", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c", archived: false },
-  { id: 3, title: "HOUSE TO LET —KAREN -WINDY RIDGE", price: 500000, category: "House", type: "Rent", location: "Karen", image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750", archived: true },
-  { id: 4, title: "LAND FOR SALE – ELDAMA RAVIN WESTLANDS", price: 500000000, category: "Land", type: "Sale", location: "Westlands", image: "https://images.unsplash.com/photo-1470466803385-966269158d9c", archived: false }
+  {
+    id: 1,
+    title: "4-Bedroom Apartment – Brookside",
+    price: 220000,
+    category: "Apartment",
+    type: "Rent",
+    location: "Westlands",
+    image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2",
+    bedrooms: 4,
+    bathrooms: 4,
+    ensuiteCount: 4,
+    features: ["Pantry/Utility Kitchen", "Study Room", "Prayer Room", "Lift", "Gated Community"],
+    archived: false
+  },
+  {
+    id: 2,
+    title: "6-Bedroom House – Karen",
+    price: 500000,
+    category: "House",
+    type: "Rent",
+    location: "Karen",
+    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750",
+    bedrooms: 6,
+    bathrooms: 4,
+    ensuiteCount: 4,
+    features: ["Swimming Pool", "Gym Space", "Fireplace", "Half-Acre Plot", "Backup Generator"],
+    archived: false
+  },
+  {
+    id: 3,
+    title: "5-Acre Plot – Eldama Ravine",
+    price: 500000000,
+    category: "Land",
+    type: "Sale",
+    location: "Westlands",
+    acreage: "5 acres",
+    landUse: "Commercial",
+    hasStructures: true,
+    archived: true
+  }
 ];
 
-const ADMIN_PASSWORD = "capitalhomes"; // Change this in real app
+const ADMIN_PASSWORD = "capitalhomes";
 
-// Unlock admin
+// === UI FUNCTIONS ===
 function unlockAdmin() {
   const pwd = document.getElementById('adminPassword').value;
   if (pwd === ADMIN_PASSWORD) {
@@ -196,62 +365,131 @@ function unlockAdmin() {
     document.getElementById('adminPanel').classList.remove('hidden');
     renderAdminListings();
   } else {
-    alert('Incorrect password.');
+    alert('Incorrect password. Please try again.');
   }
 }
 
 function logout() {
-  document.getElementById('adminPanel').classList.add('hidden');
-  document.getElementById('passwordGate').classList.remove('hidden');
-  document.getElementById('adminPassword').value = '';
+  if (confirm('Are you sure you want to log out?')) {
+    document.getElementById('adminPanel').classList.add('hidden');
+    document.getElementById('passwordGate').classList.remove('hidden');
+    document.getElementById('adminPassword').value = '';
+  }
 }
 
-// Tab Navigation
+// Category toggle
+document.getElementById('categorySelect').addEventListener('change', function() {
+  const sections = ['residentialSection', 'landSection', 'commercialSection'];
+  sections.forEach(id => document.getElementById(id).classList.remove('active'));
+  
+  const cat = this.value;
+  if (['House', 'Apartment'].includes(cat)) {
+    document.getElementById('residentialSection').classList.add('active');
+  } else if (cat === 'Land') {
+    document.getElementById('landSection').classList.add('active');
+  } else if (['Office', 'Godown', 'Commercial'].includes(cat)) {
+    document.getElementById('commercialSection').classList.add('active');
+  }
+});
+
+// Image preview
+document.querySelector('input[name="images"]').addEventListener('change', function(e) {
+  const preview = document.getElementById('imagePreview');
+  preview.innerHTML = '';
+  const files = [...e.target.files].slice(0, 6);
+  files.forEach(file => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const img = document.createElement('img');
+      img.src = reader.result;
+      img.className = 'w-full h-24 object-cover rounded border';
+      preview.appendChild(img);
+    };
+    reader.readAsDataURL(file);
+  });
+});
+
+// Tab navigation
 document.querySelectorAll('.tab-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('text-primary', 'border-primary'));
     document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
-    
     btn.classList.add('text-primary', 'border-primary');
     document.getElementById('tab-' + btn.dataset.tab).classList.remove('hidden');
   });
 });
 
-// Upload Form
+// Form submit
 document.getElementById('uploadForm').addEventListener('submit', function(e) {
   e.preventDefault();
-  const formData = new FormData(this);
+  
+  const form = this;
+  const getCheckedValues = (name) => {
+    return Array.from(form.querySelectorAll(`input[name="${name}"]:checked`)).map(el => el.value);
+  };
+  const getCheckbox = (name) => form.querySelector(`input[name="${name}"]`)?.checked || false;
+
   const newListing = {
     id: Date.now(),
-    title: formData.get('title'),
-    price: parseFloat(formData.get('price')),
-    category: formData.get('category'),
-    type: formData.get('type'),
-    location: formData.get('location'),
-    image: formData.get('image') || "https://placehold.co/600x400/10B981/white?text=" + encodeURIComponent(formData.get('category')),
-    archived: false
+    title: form.querySelector('[name="title"]').value,
+    price: parseFloat(form.querySelector('[name="price"]').value),
+    category: form.querySelector('[name="category"]').value,
+    type: form.querySelector('[name="type"]').value,
+    location: form.querySelector('[name="location"]').value,
+    image: "https://placehold.co/600x400/10B981/white?text=" + encodeURIComponent(form.querySelector('[name="category"]').value),
+    archived: false,
+    
+    // Residential
+    bedrooms: form.querySelector('[name="bedrooms"]')?.value ? parseInt(form.querySelector('[name="bedrooms"]').value) : null,
+    bathrooms: form.querySelector('[name="bathrooms"]')?.value ? parseInt(form.querySelector('[name="bathrooms"]').value) : null,
+    ensuiteCount: form.querySelector('[name="ensuiteCount"]')?.value ? parseInt(form.querySelector('[name="ensuiteCount"]').value) : null,
+    parkingSpaces: form.querySelector('[name="parkingSpaces"]')?.value ? parseInt(form.querySelector('[name="parkingSpaces"]').value) : null,
+    features: getCheckedValues('features'),
+    
+    // Land
+    acreage: form.querySelector('[name="acreage"]')?.value || null,
+    landUse: form.querySelector('[name="landUse"]')?.value || null,
+    hasStructures: getCheckbox('hasStructures'),
+    
+    // Commercial
+    areaSqft: form.querySelector('[name="areaSqft"]')?.value ? parseInt(form.querySelector('[name="areaSqft"]').value) : null,
+    floors: form.querySelector('[name="floors"]')?.value || null,
+    commercialDetails: form.querySelector('[name="commercialDetails"]')?.value || null
   };
+
   adminListings.unshift(newListing);
   renderAdminListings();
-  this.reset();
-  alert('Listing added successfully!');
+  form.reset();
+  document.getElementById('imagePreview').innerHTML = '';
+  document.querySelectorAll('.conditional-section').forEach(el => el.classList.remove('active'));
+  alert('✅ Listing added successfully!');
 });
 
-// Render Admin Listings
+// Render listings
 function renderAdminListings(items = adminListings) {
   const tbody = document.getElementById('admin-listings-body');
   tbody.innerHTML = items.map(item => {
-    const statusClass = item.archived ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800';
-    const statusText = item.archived ? 'Archived' : 'Active';
-    
+    let details = '';
+    if (['House', 'Apartment'].includes(item.category)) {
+      details = `${item.bedrooms || '?'} Beds${item.features.length ? ' · ' + item.features.slice(0,2).join(', ') : ''}`;
+    } else if (item.category === 'Land') {
+      details = item.acreage || 'Land';
+    } else {
+      details = item.areaSqft ? `${item.areaSqft} sqft` : item.category;
+    }
+
     return `
       <tr class="border-b hover:bg-gray-50">
-        <td class="p-4"><img src="${item.image}?w=100" alt="" class="property-row w-20 rounded"></td>
-        <td class="p-4 font-medium max-w-xs truncate">${item.title}</td>
-        <td class="p-4">${item.category}</td>
+        <td class="p-4"><img src="${item.image}?w=100" alt="" class="w-20 h-16 object-cover rounded"></td>
+        <td class="p-4 font-medium max-w-xs text-sm">${item.title}</td>
+        <td class="p-4 text-xs text-gray-600">${details}</td>
         <td class="p-4">KSh ${item.price.toLocaleString()}</td>
-        <td class="p-4">${item.location}</td>
-        <td class="p-4"><span class="px-2 py-1 rounded text-xs ${statusClass}">${statusText}</span></td>
+        <td class="p-4 text-sm">${item.location}</td>
+        <td class="p-4">
+          <span class="px-2 py-1 rounded text-xs ${item.archived ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'}">
+            ${item.archived ? 'Archived' : 'Active'}
+          </span>
+        </td>
         <td class="p-4">
           <button onclick="archiveListing(${item.id})" class="text-sm text-red-600 hover:underline">
             ${item.archived ? 'Unarchive' : 'Archive'}
@@ -262,17 +500,16 @@ function renderAdminListings(items = adminListings) {
   }).join('');
 }
 
-// Archive/Unarchive
 function archiveListing(id) {
   const listing = adminListings.find(l => l.id == id);
   if (listing) {
     listing.archived = !listing.archived;
     renderAdminListings();
-    alert(listing.archived ? 'Listing archived' : 'Listing restored');
+    alert(listing.archived ? '✅ Listing archived' : '✅ Listing restored');
   }
 }
 
-// Admin Filters
+// Filters
 function applyAdminFilters() {
   const title = document.getElementById('filter-title').value.toLowerCase();
   const category = document.getElementById('filter-category').value;
@@ -299,7 +536,7 @@ function resetAdminFilters() {
   renderAdminListings();
 }
 
-// Initial tab
+// Init
 document.querySelector('.tab-btn').click();
 </script>
 
