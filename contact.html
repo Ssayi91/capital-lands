@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Capital Homelands — Nairobi & Mombasa</title>
+  <meta name="description" content="Visit our offices in Nairobi (Ruai) and Mombasa, or message us on WhatsApp for property inquiries. FAQs, support, and fast response.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#10B981',
+            dark: '#0f172a'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .mobile-nav { display: none; }
+    @media (max-width: 768px) {
+      .mobile-nav { display: block; position: fixed; top: 0; left: 0; width: 100%; background: white; padding: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 50; }
+      .desktop-nav { display: none; }
+    }
+
+    /* Parallax Hero */
+    .parallax-contact {
+      background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 50vh;
+      position: relative;
+    }
+    .hero-overlay {
+      background: rgba(0, 0, 0, 0.65);
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+    }
+
+    .floating-wa {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 40;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #25D366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    /* FAQ Accordion */
+    .faq-question {
+      @apply font-medium text-dark cursor-pointer py-3;
+    }
+    .faq-answer {
+      @apply text-gray-600 pb-4;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 font-sans">
+
+<!-- Mobile Nav -->
+<div id="mobileNav" class="mobile-nav hidden">
+  <div class="flex justify-between items-center">
+    <div class="text-xl font-bold text-dark">Capital<span class="text-primary">Homelands</span></div>
+    <button id="closeMenu" class="text-dark"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="mt-4 space-y-3 pt-2">
+    <a href="index.html" class="block py-2 text-dark hover:text-primary">Home</a>
+    <a href="properties.html" class="block py-2 text-dark hover:text-primary">Properties</a>
+    <a href="about.html" class="block py-2 text-dark hover:text-primary">About</a>
+    <a href="contact.html" class="block py-2 text-dark hover:text-primary">Contact</a>
+    <a href="https://wa.me/254712345678" target="_blank" class="block py-2 bg-primary text-white text-center rounded mt-2">
+      <i class="fab fa-whatsapp mr-1"></i> WhatsApp
+    </a>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="bg-white shadow">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+    <a href="index.html" class="text-xl font-bold text-dark">Capital<span class="text-primary">Homelands</span></a>
+    <div class="desktop-nav hidden md:flex space-x-6">
+      <a href="index.html" class="font-medium text-dark hover:text-primary">Home</a>
+      <a href="properties.html" class="font-medium text-dark hover:text-primary">Properties</a>
+      <a href="about.html" class="font-medium text-dark hover:text-primary">About</a>
+      <a href="contact.html" class="font-medium text-dark hover:text-primary">Contact</a>
+    </div>
+    <a href="https://wa.me/254712345678" target="_blank" class="hidden md:block bg-primary text-white px-4 py-2 rounded-md flex items-center">
+      <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+    </a>
+    <button id="openMenu" class="md:hidden text-dark"><i class="fas fa-bars text-xl"></i></button>
+  </div>
+</header>
+
+<!-- Parallax Hero -->
+<section class="parallax-contact">
+  <div class="hero-overlay px-4">
+    <div class="max-w-3xl">
+      <h1 class="text-3xl md:text-4xl font-bold mb-2">Contact Capital Homelands</h1>
+      <p class="text-xl">We’re here to help you find your perfect property in Kenya.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Main Content -->
+<section class="max-w-7xl mx-auto px-4 py-12">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+    <!-- Customer Education -->
+    <div>
+      <h2 class="text-2xl font-bold text-dark mb-4">Why Message Us?</h2>
+      <p class="text-gray-700 mb-4">
+        At Capital Homelands, we cut through the noise of property hunting. No agents. No fake listings. Just verified properties 
+        directly from owners — in Nairobi, Mombasa, and beyond.
+      </p>
+      <ul class="space-y-2 text-gray-700">
+        <li class="flex items-start">
+          <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+          <span>Instant WhatsApp replies (within 1 hour)</span>
+        </li>
+        <li class="flex items-start">
+          <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+          <span>Verified listings — no expired or duplicate ads</span>
+        </li>
+        <li class="flex items-start">
+          <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+          <span>Local expertise in Nairobi & Mombasa</span>
+        </li>
+        <li class="flex items-start">
+          <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+          <span>Free consultation — no obligation</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Contact Form (WhatsApp) -->
+    <div class="bg-white p-6 rounded-xl shadow">
+      <h3 class="text-xl font-bold mb-4">Send Us a Message</h3>
+      <p class="text-gray-600 mb-4">We respond via WhatsApp within 1 hour.</p>
+      
+      <form id="contactForm">
+        <div class="mb-3">
+          <input type="text" placeholder="Your Name" class="w-full p-3 border rounded-lg" required>
+        </div>
+        <div class="mb-3">
+          <input type="tel" placeholder="Phone (e.g. 254712345678)" class="w-full p-3 border rounded-lg" required>
+        </div>
+        <div class="mb-3">
+          <select class="w-full p-3 border rounded-lg" required>
+            <option value="">I'm interested in...</option>
+            <option>Apartment for Rent</option>
+            <option>Apartment for Sale</option>
+            <option>House for Rent</option>
+            <option>House for Sale</option>
+            <option>Land for Sale</option>
+            <option>Office/Godown</option>
+            <option>Commercial Property</option>
+          </select>
+        </div>
+        <div class="mb-4">
+          <textarea placeholder="Message (e.g. 'I want a 3-bedroom in Westlands')" class="w-full p-3 border rounded-lg" rows="3"></textarea>
+        </div>
+        <button type="submit" class="w-full bg-primary hover:bg-emerald-600 text-white font-bold py-3 rounded-lg">
+          <i class="fab fa-whatsapp mr-2"></i> Send via WhatsApp
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Offices -->
+  <div class="mb-16">
+    <h2 class="text-2xl font-bold text-center mb-8">Visit Our Offices</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="bg-white p-6 rounded-xl shadow text-center">
+        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+          <i class="fas fa-city text-primary text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-2">Nairobi Office</h3>
+        <p class="text-gray-600">Ruai, Nairobi, Kenya</p>
+        <p class="text-gray-600 mt-2">Mon–Sat: 8AM–6PM</p>
+        <a href="https://wa.me/254712345678" target="_blank" class="mt-4 inline-block text-primary font-medium hover:underline">
+          <i class="fab fa-whatsapp mr-1"></i> Message Nairobi Team
+        </a>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow text-center">
+        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+          <i class="fas fa-umbrella-beach text-primary text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-2">Mombasa Office</h3>
+        <p class="text-gray-600">Mombasa Island, Mombasa, Kenya</p>
+        <p class="text-gray-600 mt-2">Mon–Sat: 8:30AM–5:30PM</p>
+        <a href="https://wa.me/254712345678" target="_blank" class="mt-4 inline-block text-primary font-medium hover:underline">
+          <i class="fab fa-whatsapp mr-1"></i> Message Mombasa Team
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQs -->
+  <div>
+    <h2 class="text-2xl font-bold text-center mb-8">Frequently Asked Questions</h2>
+    <div class="max-w-3xl mx-auto space-y-4">
+      <div class="bg-white p-5 rounded-xl shadow">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <i class="fas fa-chevron-down mr-2 inline-block"></i>
+          How quickly do you respond to WhatsApp messages?
+        </div>
+        <div class="faq-answer hidden">
+          We aim to reply within 1 hour during business hours (8AM–6PM, Mon–Sat).
+        </div>
+      </div>
+      <div class="bg-white p-5 rounded-xl shadow">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <i class="fas fa-chevron-down mr-2 inline-block"></i>
+          Are your listings verified?
+        </div>
+        <div class="faq-answer hidden">
+          Yes! Every property is confirmed directly with the owner. We remove listings immediately when sold or rented.
+        </div>
+      </div>
+      <div class="bg-white p-5 rounded-xl shadow">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <i class="fas fa-chevron-down mr-2 inline-block"></i>
+          Do you charge any fees?
+        </div>
+        <div class="faq-answer hidden">
+          No. Our service is free for buyers and renters. We connect you directly with property owners.
+        </div>
+      </div>
+      <div class="bg-white p-5 rounded-xl shadow">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <i class="fas fa-chevron-down mr-2 inline-block"></i>
+          Can you help me outside Nairobi?
+        </div>
+        <div class="faq-answer hidden">
+          Yes! We also serve Mombasa, Nakuru, Kisumu, and other major Kenyan cities.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/254712345678" target="_blank" class="floating-wa md:hidden">
+  <i class="fab fa-whatsapp text-white text-2xl"></i>
+</a>
+
+<!-- Footer -->
+<footer class="bg-dark text-white pt-12 pb-8">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div>
+        <h3 class="text-xl font-bold mb-4">Capital Homelands</h3>
+        <p class="text-gray-300 text-sm">
+          Premium property listings in Nairobi & Mombasa. Verified. Direct. Free.
+        </p>
+        <div class="mt-4 flex space-x-4">
+          <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/254712345678" target="_blank" class="text-gray-300 hover:text-white"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-semibold text-lg mb-4">Contact</h4>
+        <ul class="space-y-2 text-gray-300 text-sm">
+          <li class="flex items-center"><i class="fas fa-map-marker-alt mr-2 text-primary"></i> Ruai, Nairobi</li>
+          <li class="flex items-center"><i class="fas fa-map-marker-alt mr-2 text-primary"></i> Mombasa Island</li>
+          <li class="flex items-center"><i class="fas fa-phone mr-2 text-primary"></i> +254 712 345 678</li>
+          <li class="flex items-center"><i class="fas fa-envelope mr-2 text-primary"></i> info@capitalhomelands.co.ke</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-lg mb-4">Quick Links</h4>
+        <ul class="space-y-2">
+          <li><a href="#" class="text-gray-300 hover:text-primary text-sm">All Properties</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-primary text-sm">Apartments for Rent</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-primary text-sm">Land for Sale</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-primary text-sm">Commercial</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-lg mb-4">We Serve</h4>
+        <ul class="text-gray-300 text-sm space-y-1">
+          <li>• Nairobi (Westlands, Karen, Parklands)</li>
+          <li>• Mombasa (Nyali, Bamburi, CBD)</li>
+          <li>• Nakuru • Kisumu • Athi River</li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-gray-800 mt-10 pt-6 text-center text-gray-400 text-sm">
+      <p>&copy; 2025 Capital Homelands. All rights reserved.</p>
+      <p class="mt-1"><i class="fas fa-globe-africa mr-1"></i> Registered in Kenya • .co.ke Domain</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Mobile menu
+document.getElementById('openMenu').addEventListener('click', () => {
+  document.getElementById('mobileNav').classList.remove('hidden');
+});
+document.getElementById('closeMenu').addEventListener('click', () => {
+  document.getElementById('mobileNav').classList.add('hidden');
+});
+
+// FAQ Toggle
+function toggleFAQ(element) {
+  const answer = element.nextElementSibling;
+  const icon = element.querySelector('i');
+  if (answer.classList.contains('hidden')) {
+    answer.classList.remove('hidden');
+    icon.classList.remove('fa-chevron-down');
+    icon.classList.add('fa-chevron-up');
+  } else {
+    answer.classList.add('hidden');
+    icon.classList.remove('fa-chevron-up');
+    icon.classList.add('fa-chevron-down');
+  }
+}
+
+// WhatsApp Form Submission
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const name = this.querySelector('input[placeholder="Your Name"]').value;
+  const phone = this.querySelector('input[placeholder="Phone (e.g. 254712345678)"]').value;
+  const interest = this.querySelector('select').value;
+  const message = this.querySelector('textarea').value || 'No additional message';
+
+  let text = `Hi Capital Homelands, I'm ${name}. `;
+  text += `I'm interested in: ${interest}. `;
+  if (message && !message.includes('e.g.')) text += `Message: ${message}`;
+
+  const url = `https://wa.me/254712345678?text=${encodeURIComponent(text)}`;
+  window.open(url, '_blank');
+  
+  alert('Opening WhatsApp to send your message!');
+});
+</script>
+
+</body>
+</html>
