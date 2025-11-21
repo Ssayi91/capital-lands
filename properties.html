@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Properties for Sale & Rent in Nairobi — Capital Homelands</title>
+  <meta name="description" content="Verified apartments, houses, land & commercial properties for sale and rent in Westlands, Karen, Parklands. Direct WhatsApp contact.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#10B981',
+            dark: '#0f172a'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .property-card img { height: 200px; object-fit: cover; }
+    .mobile-nav { display: none; }
+    @media (max-width: 768px) {
+      .mobile-nav { display: block; position: fixed; top: 0; left: 0; width: 10; background: white; padding: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 50; }
+      .desktop-nav { display: none; }
+    }
+    .floating-wa {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 40;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #25D366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body class="bg-gray-50 font-sans">
+
+<!-- Mobile Nav -->
+<div id="mobileNav" class="mobile-nav hidden">
+  <div class="flex justify-between items-center">
+    <!-- <div class="text-xl font-bold text-dark">Capital<span class="text-primary">Homelands</span></div> -->
+    <button id="closeMenu" class="text-dark"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="mt-4 space-y-3 pt-2">
+    <a href="index.html" class="block py-2 text-dark hover:text-primary">Home</a>
+    <a href="properties.html" class="block py-2 text-dark hover:text-primary">Properties</a>
+    <a href="#" class="block py-2 text-dark hover:text-primary">About</a>
+    <a href="#" class="block py-2 text-dark hover:text-primary">Contact</a>
+    <a href="https://wa.me/254712345678" target="_blank" class="block py-2 bg-primary text-white text-center rounded mt-2">
+      <i class="fab fa-whatsapp mr-1"></i> WhatsApp
+    </a>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="bg-white shadow">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+    <a href="index.html" class="text-xl font-bold text-dark">Capital<span class="text-primary">Homelands</span></a>
+    <div class="desktop-nav hidden md:flex space-x-6">
+      <a href="index.html" class="font-medium text-dark hover:text-primary">Home</a>
+      <a href="properties.html" class="font-medium text-dark hover:text-primary">Properties</a>
+      <a href="#" class="font-medium text-dark hover:text-primary">About</a>
+      <a href="#" class="font-medium text-dark hover:text-primary">Contact</a>
+    </div>
+    <a href="https://wa.me/254712345678" target="_blank" class="hidden md:block bg-primary text-white px-4 py-2 rounded-md flex items-center">
+      <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+    </a>
+    <button id="openMenu" class="md:hidden text-dark"><i class="fas fa-bars text-xl"></i></button>
+  </div>
+</header>
+
+<!-- Page Header -->
+<section class="max-w-7xl mx-auto px-4 py-8">
+  <div class="text-center mb-8">
+    <h1 class="text-3xl font-bold text-dark">All Properties</h1>
+    <p class="text-gray-600 mt-2">Browse verified listings for sale and rent across Nairobi</p>
+  </div>
+
+  <!-- Advanced Filters -->
+  <div class="bg-white rounded-xl shadow p-5 mb-8">
+    <div class="grid grid-cols-2 md:grid-cols-6 gap-3">
+      <select id="filter-category" class="p-2.5 border rounded text-sm">
+        <option value="">All Categories</option>
+        <option>Apartment</option>
+        <option>House</option>
+        <option>Office</option>
+        <option>Godown</option>
+        <option>Land</option>
+        <option>Commercial</option>
+      </select>
+      <select id="filter-type" class="p-2.5 border rounded text-sm">
+        <option value="">All Types</option>
+        <option>For Sale</option>
+        <option>For Rent</option>
+      </select>
+      <input type="number" id="filter-min" placeholder="Min Price" class="p-2.5 border rounded text-sm">
+      <input type="number" id="filter-max" placeholder="Max Price" class="p-2.5 border rounded text-sm">
+      <select id="filter-location" class="p-2.5 border rounded text-sm">
+        <option value="">All Locations</option>
+        <option>Westlands</option>
+        <option>Parklands</option>
+        <option>Karen</option>
+        <option>Industrial Area</option>
+        <option>Athi River</option>
+        <option>Upper Hill</option>
+        <option>Muthaiga</option>
+        <option>Lavington</option>
+        <option>Thigiri</option>
+        <option>Kilimani</option>
+        <option>Runda</option>
+        <option>Lower Kabete</option>
+        <option>Nakuru</option>
+        <option>Kisumu</option>
+      </select>
+      <button onclick="applyFilters()" class="bg-primary hover:bg-emerald-600 text-white font-medium rounded whitespace-nowrap">
+        <i class="fas fa-search mr-1"></i> Search
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Property Listings -->
+<section class="max-w-7xl mx-auto px-4 mb-16">
+  <div id="property-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- Listings injected by JS -->
+  </div>
+</section>
+
+<!-- Floating WhatsApp (Mobile) -->
+<a href="https://wa.me/254712345678" target="_blank" class="floating-wa md:hidden">
+  <i class="fab fa-whatsapp text-white text-2xl"></i>
+</a>
+
+<!-- Footer -->
+<footer class="bg-dark text-white pt-12 pb-8">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div>
+        <h3 class="text-xl font-bold mb-4">Capital Homelands</h3>
+        <p class="text-gray-300 text-sm leading-relaxed">
+          Premium property listings for sale and rent across Nairobi. 
+          Verified. Direct from owners. No hidden fees.
+        </p>
+        <div class="mt-4 flex space-x-4">
+          <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/254712345678" target="_blank" class="text-gray-300 hover:text-white"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-semibold text-lg mb-4">Contact Us</h4>
+        <ul class="space-y-3 text-gray-300 text-sm">
+          <li class="flex items-start">
+            <i class="fas fa-map-marker-alt mt-1 mr-3 text-primary"></i>
+            <span>Ruai, Nairobi, Kenya</span>
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-phone mr-3 text-primary"></i>
+            <span>+254 712 345 678</span>
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-envelope mr-3 text-primary"></i>
+            <span>info@capitalhomelands.co.ke</span>
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-clock mr-3 text-primary"></i>
+            <span>Mon–Sat: 8AM–6PM</span>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-lg mb-4">Quick Links</h4>
+        <ul class="space-y-2">
+          <li><a href="#" class="text-gray-300 hover:text-primary text-sm">Home</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-primary text-sm">All Properties</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-primary text-sm">Apartments for Rent</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-primary text-sm">Apartments for Sale</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-primary text-sm">Houses for Sale</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-primary text-sm">Land for Sale</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-primary text-sm">Commercial Properties</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-lg mb-4">We Serve</h4>
+        <p class="text-gray-300 text-sm mb-3">Prime neighborhoods across Nairobi:</p>
+        <ul class="grid grid-cols-2 gap-1 text-gray-300 text-sm">
+          <li>• Westlands</li>
+          <li>• Karen</li>
+          <li>• Parklands</li>
+          <li>• Lavington</li>
+          <li>• Kilimani</li>
+          <li>• Runda</li>
+          <li>• Industrial Area</li>
+          <li>• Athi River</li>
+          <li>• Upper Hill</li>
+          <li>• Muthaiga</li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-gray-800 mt-10 pt-6 text-center text-gray-400 text-sm">
+      <p>&copy; 2025 Capital Homelands. All rights reserved.</p>
+      <p class="mt-1"><i class="fas fa-globe-africa mr-1"></i> .co.ke Domain • Trusted Since 2025</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// --- Parsed listings from capitalhomelands.co.ke ---
+const listings = [
+  // Apartments for Rent
+  { id: 1, title: "APARTMENT FOR RENT- GENERAL MATHENGE ROAD, WESTLANDS", price: 150000, category: "Apartment", type: "Rent", location: "Westlands", image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+  { id: 2, title: "APARTMENT TO LET – PARKLANDS", price: 130000, category: "Apartment", type: "Rent", location: "Parklands", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+  { id: 3, title: "TO LET – WAMBUGU ROAD , PARKLANDS", price: 65000, category: "Apartment", type: "Rent", location: "Parklands", image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+  { id: 4, title: "TO LET WESTLANDS", price: 70000, category: "Apartment", type: "Rent", location: "Westlands", image: "https://images.unsplash.com/photo-1582719478419-8c0e16a0e878?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+  { id: 5, title: "TO LET – WESTLANDS", price: 90000, category: "Apartment", type: "Rent", location: "Westlands", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+  { id: 6, title: "TO LET- GENERAL MATHENGE ROAD WESTLANDS", price: 210000, category: "Apartment", type: "Rent", location: "Westlands", image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+  { id: 7, title: "TO LET BROOKSIDE – WESTLANDS", price: 220000, category: "Apartment", type: "Rent", location: "Westlands", image: "https://images.unsplash.com/photo-1582719478419-8c0e16a0e878?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+  { id: 8, title: "TO LET -DUPLEX PENTHOUSE —-PARKLAND", price: 280000, category: "Apartment", type: "Rent", location: "Parklands", image: "https://images.unsplash.com/photo-1515263487990-61b078f9ae2f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+  { id: 9, title: "TO LET –RAPTOR ROAD WESTLANDS", price: 150000, category: "Apartment", type: "Rent", location: "Westlands", image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+
+  // Apartments for Sale
+  { id: 10, title: "APARTMENT FOR SALE , GENERAL MATHENGE – WESTLANDS", price: 35000000, category: "Apartment", type: "Sale", location: "Westlands", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+  { id: 11, title: "APARTMENT FOR SALE — BROOKSIDE -WESTLANDS", price: 30000000, category: "Apartment", type: "Sale", location: "Westlands", image: "https://images.unsplash.com/photo-1582719478419-8c0e16a0e878?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+  { id: 12, title: "APARTMENT FOR SALE –PARKLANDS", price: 18500000, category: "Apartment", type: "Sale", location: "Parklands", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+
+  // Houses for Rent
+  { id: 13, title: "HOUSE TO LET —KAREN -WINDY RIDGE", price: 500000, category: "House", type: "Rent", location: "Karen", image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+  { id: 14, title: "HOUSE TO LET KAREN", price: 380000, category: "House", type: "Rent", location: "Karen", image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+  { id: 15, title: "House FOR RENT -SHANZU ROAD WESTLANDS", price: 340000, category: "House", type: "Rent", location: "Westlands", image: "https://images.unsplash.com/photo-1613490795003-2e3d83b6e95e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+
+  // Houses for Sale
+  { id: 16, title: "HOUSE FOR SALE – GRIVELEA GROVE, WESTLANDS", price: 36000000, category: "House", type: "Sale", location: "Westlands", image: "https://images.unsplash.com/photo-1613490795003-2e3d83b6e95e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+  { id: 17, title: "A HOUSE FOR SALE, SHANZU ROAD WESTLANDS", price: 55000000, category: "House", type: "Sale", location: "Westlands", image: "https://images.unsplash.com/photo-1613490795003-2e3d83b6e95e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+  { id: 18, title: "HOUSE FOR SALE OLD MUTHAIGA", price: 500000000, category: "House", type: "Sale", location: "Muthaiga", image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+
+  // Offices for Rent
+  { id: 19, title: "OFFICE SPACE TO LET- WESTLANDS", price: 150000, category: "Office", type: "Rent", location: "Westlands", image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+  { id: 20, title: "OFFICES TO LET –UPPER HILL", price: 80000, category: "Office", type: "Rent", location: "Upper Hill", image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+
+  // Godowns
+  { id: 21, title: "GODOWNS TO LET –INDUSTRIAL AREA", price: 40000, category: "Godown", type: "Rent", location: "Industrial Area", priceNote: "per sqft", image: "https://images.unsplash.com/photo-1508804182893-9a1de6ebc162?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+  { id: 22, title: "GODOWN FOR SALE -ATHI RIVER", price: 120000000, category: "Godown", type: "Sale", location: "Athi River", image: "https://images.unsplash.com/photo-1508804182893-9a1de6ebc162?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+
+  // Land
+  { id: 23, title: "LAND FOR SALE – ELDAMA RAVIN WESTLANDS", price: 500000000, category: "Land", type: "Sale", location: "Westlands", image: "https://images.unsplash.com/photo-1470466803385-966269158d9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+  { id: 24, title: "PLOT FOR SALE – WESTLANDS", price: 550000000, category: "Land", type: "Sale", location: "Westlands", image: "https://images.unsplash.com/photo-1470466803385-966269158d9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+
+  // Commercial
+  { id: 25, title: "COMMERCIAL PROPERTY FOR SALE – PARKLANDS", price: 175000000, category: "Commercial", type: "Sale", location: "Parklands", image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" }
+];
+
+function renderListings(items = listings) {
+  const grid = document.getElementById('property-grid');
+  if (items.length === 0) {
+    grid.innerHTML = '<p class="text-center col-span-full py-12 text-gray-500">No properties match your filters.</p>';
+    return;
+  }
+  grid.innerHTML = items.map(listing => {
+    const isRent = listing.type === 'Rent';
+    const priceDisplay = isRent 
+      ? `KSh ${listing.price.toLocaleString()}/mo` 
+      : `KSh ${listing.price.toLocaleString()}`;
+
+    return `
+      <div class="bg-white rounded-xl shadow overflow-hidden flex flex-col h-full">
+        <img src="${listing.image}" alt="${listing.title}" class="w-full h-44 object-cover">
+        <div class="p-4 flex-grow">
+          <span class="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded">
+            ${listing.category} for ${listing.type}
+          </span>
+          <h3 class="font-bold text-md mt-2 mb-1 line-clamp-2">${listing.title}</h3>
+          <p class="text-primary font-bold">${priceDisplay}</p>
+          <p class="text-gray-600 text-sm">${listing.location}</p>
+        </div>
+        <div class="px-4 pb-4">
+          <a href="https://wa.me/254712345678?text=Hi%20Capital%20Homelands,%20I'm%20interested%20in%3A%20${encodeURIComponent(listing.title)}" 
+             target="_blank"
+             class="w-full bg-primary hover:bg-emerald-600 text-white text-center py-3 px-4 rounded-lg font-medium flex items-center justify-center">
+            <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+          </a>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function applyFilters() {
+  const category = document.getElementById('filter-category').value;
+  const type = document.getElementById('filter-type').value;
+  const location = document.getElementById('filter-location').value;
+  const min = parseFloat(document.getElementById('filter-min').value) || 0;
+  const max = parseFloat(document.getElementById('filter-max').value) || Infinity;
+
+  const filtered = listings.filter(l => {
+    if (category && l.category !== category) return false;
+    if (type && l.type !== type) return false;
+    if (location && l.location !== location) return false;
+    if (l.price < min || l.price > max) return false;
+    return true;
+  });
+
+  renderListings(filtered);
+}
+
+// Mobile menu
+document.getElementById('openMenu').addEventListener('click', () => {
+  document.getElementById('mobileNav').classList.remove('hidden');
+});
+document.getElementById('closeMenu').addEventListener('click', () => {
+  document.getElementById('mobileNav').classList.add('hidden');
+});
+
+// Initial render
+renderListings();
+</script>
+
+</body>
+</html>
