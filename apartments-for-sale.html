@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Apartments for Sale in Nairobi — Capital Homelands</title>
+  <meta name="description" content="Luxury apartments for sale in Westlands & Parklands. 3-4 bedrooms, 2600-3300sqft, DSQ, lift, heated pool. Direct WhatsApp.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#10B981',
+            dark: '#0f172a'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .property-card img { height: 200px; object-fit: cover; }
+    .mobile-nav { display: none; }
+    @media (max-width: 768px) {
+      .mobile-nav { display: block; position: fixed; top: 0; left: 0; width: 100%; background: white; padding: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 50; }
+      .desktop-nav { display: none; }
+    }
+    .floating-wa {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 40;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #25D366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body class="bg-gray-50 font-sans">
+
+<!-- Mobile Nav -->
+<div id="mobileNav" class="mobile-nav hidden">
+  <div class="flex justify-between items-center">
+    <a href="index.html" class="text-xl font-bold text-dark">Capital<span class="text-primary">Homelands</span></a>
+    <button id="closeMenu" class="text-dark"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="mt-4 space-y-3 pt-2">
+    <a href="index.html" class="block py-2 text-dark hover:text-primary">Home</a>
+    <div class="py-2">
+      <div class="font-medium text-dark">Properties</div>
+      <div class="pl-3 mt-2 space-y-2 text-sm">
+        <a href="apartments-for-rent.html" class="block text-dark hover:text-primary">Apartments for Rent</a>
+        <a href="apartments-for-sale.html" class="block text-primary font-medium">Apartments for Sale</a>
+        <a href="houses-for-rent.html" class="block text-dark hover:text-primary">Houses for Rent</a>
+        <a href="houses-for-sale.html" class="block text-dark hover:text-primary">Houses for Sale</a>
+        <a href="land-for-sale.html" class="block text-dark hover:text-primary">Land for Sale</a>
+        <a href="godowns-for-rent.html" class="block text-dark hover:text-primary">Godowns for Rent</a>
+        <a href="godowns-for-sale.html" class="block text-dark hover:text-primary">Godowns for Sale</a>
+        <a href="offices-for-rent.html" class="block text-dark hover:text-primary">Offices for Rent</a>
+        <a href="offices-for-sale.html" class="block text-dark hover:text-primary">Offices for Sale</a>
+        <a href="commercial-properties.html" class="block text-dark hover:text-primary">Commercial Properties</a>
+      </div>
+    </div>
+    <a href="about.html" class="block py-2 text-dark hover:text-primary">About</a>
+    <a href="contact.html" class="block py-2 text-dark hover:text-primary">Contact</a>
+    <a href="https://wa.me/254712345678" target="_blank" class="block py-2 bg-primary text-white text-center rounded mt-2">
+      <i class="fab fa-whatsapp mr-1"></i> WhatsApp
+    </a>
+  </div>
+</div>
+
+<!-- Desktop Header -->
+<header class="bg-white shadow">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+    <a href="index.html" class="text-xl font-bold text-dark">Capital<span class="text-primary">Homelands</span></a>
+    <div class="desktop-nav hidden md:flex space-x-6">
+      <a href="index.html" class="font-medium text-dark hover:text-primary">Home</a>
+      <div class="relative group">
+        <a href="properties.html" class="font-medium text-dark hover:text-primary flex items-center">
+          Properties <i class="fas fa-chevron-down ml-1 text-xs mt-0.5"></i>
+        </a>
+        <div class="absolute left-0 mt-2 w-64 bg-white shadow-lg rounded-lg py-2 hidden group-hover:block z-50 border">
+          <a href="apartments-for-rent.html" class="block px-4 py-2 text-sm text-dark hover:bg-gray-100">Apartments for Rent</a>
+          <a href="apartments-for-sale.html" class="block px-4 py-2 text-sm text-primary font-medium bg-gray-50">Apartments for Sale</a>
+          <a href="houses-for-rent.html" class="block px-4 py-2 text-sm text-dark hover:bg-gray-100">Houses for Rent</a>
+          <a href="houses-for-sale.html" class="block px-4 py-2 text-sm text-dark hover:bg-gray-100">Houses for Sale</a>
+          <a href="land-for-sale.html" class="block px-4 py-2 text-sm text-dark hover:bg-gray-100">Land for Sale</a>
+          <a href="godowns-for-rent.html" class="block px-4 py-2 text-sm text-dark hover:bg-gray-100">Godowns for Rent</a>
+          <a href="godowns-for-sale.html" class="block px-4 py-2 text-sm text-dark hover:bg-gray-100">Godowns for Sale</a>
+          <a href="offices-for-rent.html" class="block px-4 py-2 text-sm text-dark hover:bg-gray-100">Offices for Rent</a>
+          <a href="offices-for-sale.html" class="block px-4 py-2 text-sm text-dark hover:bg-gray-100">Offices for Sale</a>
+          <a href="commercial-properties.html" class="block px-4 py-2 text-sm text-dark hover:bg-gray-100">Commercial Properties</a>
+        </div>
+      </div>
+      <a href="about.html" class="font-medium text-dark hover:text-primary">About</a>
+      <a href="contact.html" class="font-medium text-dark hover:text-primary">Contact</a>
+    </div>
+    <a href="https://wa.me/254712345678" target="_blank" class="hidden md:block bg-primary text-white px-4 py-2 rounded-md flex items-center">
+      <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+    </a>
+    <button id="openMenu" class="md:hidden text-dark"><i class="fas fa-bars text-xl"></i></button>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="bg-gradient-to-r from-gray-900 to-primary text-white">
+  <div class="max-w-7xl mx-auto px-4 py-16 md:py-20 text-center">
+    <h1 class="text-3xl md:text-4xl font-bold mb-3">Apartments for Sale in Nairobi</h1>
+    <p class="text-lg max-w-2xl mx-auto">Luxury 3-4 bedroom apartments in Westlands & Parklands. Verified listings. Direct from owners.</p>
+  </div>
+</section>
+
+<!-- Filters -->
+<section class="max-w-7xl mx-auto px-4 -mt-6 mb-8">
+  <div class="bg-white rounded-xl shadow p-4">
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-2">
+      <input type="number" placeholder="Min Price" class="p-2.5 border rounded text-sm">
+      <input type="number" placeholder="Max Price" class="p-2.5 border rounded text-sm">
+      <select class="p-2.5 border rounded text-sm">
+        <option>All Locations</option>
+        <option>Westlands</option>
+        <option>Parklands</option>
+      </select>
+      <select class="p-2.5 border rounded text-sm">
+        <option>All Bedrooms</option>
+        <option>3 Bedrooms</option>
+        <option>4 Bedrooms</option>
+      </select>
+      <button class="bg-primary hover:bg-emerald-600 text-white p-2.5 rounded text-sm whitespace-nowrap">
+        <i class="fas fa-search mr-1"></i> Search
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Listings -->
+<section class="max-w-7xl mx-auto px-4 mb-16">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- Listing 1 -->
+    <div class="bg-white rounded-xl shadow overflow-hidden flex flex-col h-full">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-44 object-cover">
+      <div class="p-4 flex-grow">
+        <span class="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded">Apartment for Sale</span>
+        <h3 class="font-bold text-md mt-2 mb-1 line-clamp-2">APARTMENT FOR SALE — GENERAL MATHENGE – WESTLANDS</h3>
+        <p class="text-primary font-bold">KSh 35,000,000</p>
+        <p class="text-gray-600 text-sm">Westlands • 3300 sqft</p>
+        <div class="mt-2 flex flex-wrap gap-1">
+          <span class="bg-gray-100 text-xs px-2 py-1 rounded">4 Beds</span>
+          <span class="bg-gray-100 text-xs px-2 py-1 rounded">All Ensuite</span>
+          <span class="bg-gray-100 text-xs px-2 py-1 rounded">Lift</span>
+        </div>
+      </div>
+      <div class="px-4 pb-4">
+        <a href="https://wa.me/254712345678?text=Hi%20Capital%20Homelands,%20I'm%20interested%20in%20apartment%20on%20General%20Mathenge" target="_blank" class="w-full bg-primary hover:bg-emerald-600 text-white text-center py-3 px-4 rounded-lg font-medium">
+          <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- Listing 2 -->
+    <div class="bg-white rounded-xl shadow overflow-hidden flex flex-col h-full">
+      <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-44 object-cover">
+      <div class="p-4 flex-grow">
+        <span class="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded">Apartment for Sale</span>
+        <h3 class="font-bold text-md mt-2 mb-1 line-clamp-2">APARTMENT FOR SALE — SAMAR RESIDENCY, WESTLANDS</h3>
+        <p class="text-primary font-bold">KSh 35,000,000</p>
+        <p class="text-gray-600 text-sm">Westlands</p>
+        <div class="mt-2 flex flex-wrap gap-1">
+          <span class="bg-gray-100 text-xs px-2 py-1 rounded">Heated Pool</span>
+          <span class="bg-gray-100 text-xs px-2 py-1 rounded">Gym</span>
+          <span class="bg-gray-100 text-xs px-2 py-1 rounded">Backup Generator</span>
+          <span class="bg-gray-100 text-xs px-2 py-1 rounded">Schindler Lifts</span>
+        </div>
+      </div>
+      <div class="px-4 pb-4">
+        <a href="https://wa.me/254712345678?text=Hi%20Capital%20Homelands,%20I'm%20interested%20in%20Samar%20Residency%20apartment" target="_blank" class="w-full bg-primary hover:bg-emerald-600 text-white text-center py-3 px-4 rounded-lg font-medium">
+          <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- Listing 3 -->
+    <div class="bg-white rounded-xl shadow overflow-hidden flex flex-col h-full">
+      <img src="https://images.unsplash.com/photo-1515263487990-61b078f9ae2f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-44 object-cover">
+      <div class="p-4 flex-grow">
+        <span class="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded">Apartment for Sale</span>
+        <h3 class="font-bold text-md mt-2 mb-1 line-clamp-2">APARTMENT FOR SALE — PARKLANDS</h3>
+        <p class="text-primary font-bold">KSh 140,000,000</p>
+        <p class="text-gray-600 text-sm">Parklands • Old Design</p>
+        <div class="mt-2 flex flex-wrap gap-1">
+          <span class="bg-gray-100 text-xs px-2 py-1 rounded">4 Beds</span>
+          <span class="bg-gray-100 text-xs px-2 py-1 rounded">2 Ensuite</span>
+          <span class="bg-gray-100 text-xs px-2 py-1 rounded">2-Car Parking</span>
+        </div>
+      </div>
+      <div class="px-4 pb-4">
+        <a href="https://wa.me/254712345678?text=Hi%20Capital%20Homelands,%20I'm%20interested%20in%20apartment%20in%20Parklands" target="_blank" class="w-full bg-primary hover:bg-emerald-600 text-white text-center py-3 px-4 rounded-lg font-medium">
+          <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- Listing 4 -->
+    <div class="bg-white rounded-xl shadow overflow-hidden flex flex-col h-full">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-44 object-cover">
+      <div class="p-4 flex-grow">
+        <span class="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded">Apartment for Sale</span>
+        <h3 class="font-bold text-md mt-2 mb-1 line-clamp-2">APARTMENT FOR SALE — BROOKSIDE, WESTLANDS</h3>
+        <p class="text-primary font-bold">KSh 30,000,000</p>
+        <p class="text-gray-600 text-sm">Westlands • 2600 sqft</p>
+        <div class="mt-2 flex flex-wrap gap-1">
+          <span class="bg-gray-100 text-xs px-2 py-1 rounded">3 Beds</span>
+          <span class="bg-gray-100 text-xs px-2 py-1 rounded">All Ensuite</span>
+          <span class="bg-gray-100 text-xs px-2 py-1 rounded">DSQ</span>
+          <span class="bg-gray-100 text-xs px-2 py-1 rounded">Dhobi Area</span>
+        </div>
+      </div>
+      <div class="px-4 pb-4">
+        <a href="https://wa.me/254712345678?text=Hi%20Capital%20Homelands,%20I'm%20interested%20in%20Brookside%20apartment" target="_blank" class="w-full bg-primary hover:bg-emerald-600 text-white text-center py-3 px-4 rounded-lg font-medium">
+          <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- Listing 5 -->
+    <div class="bg-white rounded-xl shadow overflow-hidden flex flex-col h-full">
+      <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-44 object-cover">
+      <div class="p-4 flex-grow">
+        <span class="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded">Apartment for Sale</span>
+        <h3 class="font-bold text-md mt-2 mb-1 line-clamp-2">APARTMENT FOR SALE – PARKLANDS</h3>
+        <p class="text-primary font-bold">KSh 18,500,000</p>
+        <p class="text-gray-600 text-sm">Parklands • Newly Renovated</p>
+        <div class="mt-2 flex flex-wrap gap-1">
+          <span class="bg-gray-100 text-xs px-2 py-1 rounded">3 Beds</span>
+          <span class="bg-gray-100 text-xs px-2 py-1 rounded">Master Ensuite</span>
+          <span class="bg-gray-100 text-xs px-2 py-1 rounded">Utility Area</span>
+        </div>
+      </div>
+      <div class="px-4 pb-4">
+        <a href="https://wa.me/254712345678?text=Hi%20Capital%20Homelands,%20I'm%20interested%20in%20newly%20renovated%20apartment%20in%20Parklands" target="_blank" class="w-full bg-primary hover:bg-emerald-600 text-white text-center py-3 px-4 rounded-lg font-medium">
+          <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- Listing 6 -->
+    <div class="bg-white rounded-xl shadow overflow-hidden flex flex-col h-full">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-44 object-cover">
+      <div class="p-4 flex-grow">
+        <span class="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded">Apartment for Sale</span>
+        <h3 class="font-bold text-md mt-2 mb-1 line-clamp-2">APARTMENT FOR SALE – PARKLANDS</h3>
+        <p class="text-primary font-bold">KSh 26,000,000</p>
+        <p class="text-gray-600 text-sm">Parklands</p>
+        <div class="mt-2 flex flex-wrap gap-1">
+          <span class="bg-gray-100 text-xs px-2 py-1 rounded">4 Beds</span>
+          <span class="bg-gray-100 text-xs px-2 py-1 rounded">All Ensuite</span>
+          <span class="bg-gray-100 text-xs px-2 py-1 rounded">DSQ</span>
+          <span class="bg-gray-100 text-xs px-2 py-1 rounded">Utility Area</span>
+        </div>
+      </div>
+      <div class="px-4 pb-4">
+        <a href="https://wa.me/254712345678?text=Hi%20Capital%20Homelands,%20I'm%20interested%20in%204-bedroom%20apartment%20in%20Parklands" target="_blank" class="w-full bg-primary hover:bg-emerald-600 text-white text-center py-3 px-4 rounded-lg font-medium">
+          <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- Listing 7 -->
+    <div class="bg-white rounded-xl shadow overflow-hidden flex flex-col h-full">
+      <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-44 object-cover">
+      <div class="p-4 flex-grow">
+        <span class="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded">Apartment for Sale</span>
+        <h3 class="font-bold text-md mt-2 mb-1 line-clamp-2">APARTMENT FOR SALE – G-MATHENGE, WESTLANDS</h3>
+        <p class="text-primary font-bold">KSh 35,000,000</p>
+        <p class="text-gray-600 text-sm">Westlands</p>
+        <div class="mt-2 flex flex-wrap gap-1">
+          <span class="bg-gray-100 text-xs px-2 py-1 rounded">4 Beds</span>
+          <span class="bg-gray-100 text-xs px-2 py-1 rounded">All Ensuite</span>
+          <span class="bg-gray-100 text-xs px-2 py-1 rounded">Spacious</span>
+        </div>
+      </div>
+      <div class="px-4 pb-4">
+        <a href="https://wa.me/254712345678?text=Hi%20Capital%20Homelands,%20I'm%20interested%20in%20G-Mathenge%20apartment" target="_blank" class="w-full bg-primary hover:bg-emerald-600 text-white text-center py-3 px-4 rounded-lg font-medium">
+          <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<a href="https://wa.me/254712345678" target="_blank" class="floating-wa md:hidden">
+  <i class="fab fa-whatsapp text-white text-2xl"></i>
+</a>
+
+<!-- Footer -->
+<footer class="bg-dark text-white pt-10 pb-6">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div>
+        <h3 class="text-xl font-bold mb-4">Capital Homelands</h3>
+        <p class="text-gray-300 text-sm">
+          Luxury apartments for sale in Westlands & Parklands. Verified. Direct from owners.
+        </p>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-3">Contact</h4>
+        <ul class="text-gray-300 text-sm space-y-1">
+          <li class="flex items-center"><i class="fas fa-phone mr-2 text-primary"></i> +254 712 345 678</li>
+          <li class="flex items-center"><i class="fas fa-envelope mr-2 text-primary"></i> info@capitalhomelands.co.ke</li>
+          <li class="flex items-center"><i class="fas fa-map-marker-alt mr-2 text-primary"></i> Ruai, Nairobi</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-3">Quick Links</h4>
+        <ul class="text-gray-300 space-y-1 text-sm">
+          <li><a href="apartments-for-sale.html" class="text-primary hover:underline">All Apartments for Sale</a></li>
+          <li><a href="apartments-for-rent.html" class="hover:text-primary">Apartments for Rent</a></li>
+          <li><a href="houses-for-sale.html" class="hover:text-primary">Houses for Sale</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-3">Follow Us</h4>
+        <div class="flex space-x-4">
+          <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/254712345678" class="text-gray-300 hover:text-white"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-gray-800 mt-8 pt-6 text-center text-gray-400 text-sm">
+      &copy; 2025 Capital Homelands. Apartments for sale in Nairobi, Kenya.
+    </div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('openMenu').addEventListener('click', () => {
+  document.getElementById('mobileNav').classList.remove('hidden');
+});
+document.getElementById('closeMenu').addEventListener('click', () => {
+  document.getElementById('mobileNav').classList.add('hidden');
+});
+</script>
+
+</body>
+</html>
